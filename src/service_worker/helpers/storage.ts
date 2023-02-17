@@ -134,6 +134,21 @@ export const removeIntercept = async (interceptUrl: string) => {
 }
 
 /**
+ * @dev Enable/disable intercept
+ * @param interceptUrl Intercept url to enable/disable
+ */
+export const enableDisableIntercept = async (interceptUrl: string) => {
+    const intercepts: ChiragStorage["intercepts"] = (await chrome.storage.local.get("intercepts")).intercepts;
+    intercepts[interceptUrl] = {
+        ...intercepts[interceptUrl],
+        enabled: !intercepts[interceptUrl].enabled
+    };
+    await chrome.storage.local.set({
+        intercepts
+    });
+}
+
+/**
  * @dev Removes all intercepts
  */
 export const removeAllIntercepts = async () => {

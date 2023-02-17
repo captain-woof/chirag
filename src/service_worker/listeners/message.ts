@@ -1,6 +1,6 @@
 import { Message } from "../enums";
-import { addIntercept, isTabActive, removeAllIntercepts, removeIntercept, switchExtension } from "../helpers/storage";
-import { ChiragMessageAddOrModifyIntercept, ChiragMessageRemoveAllIntercepts, ChiragMessageRemoveIntercept, ChiragMessageSwitch } from "../types";
+import { addIntercept, enableDisableIntercept, isTabActive, removeAllIntercepts, removeIntercept, switchExtension } from "../helpers/storage";
+import { ChiragMessageAddOrModifyIntercept, ChiragMessageEnableOrDisableIntercept, ChiragMessageRemoveAllIntercepts, ChiragMessageRemoveIntercept, ChiragMessageSwitch } from "../types";
 
 /**
  * @dev Sets up listeners for incoming messages
@@ -15,6 +15,11 @@ export const setupMessageListeners = () => {
     // Add/edit intercept
     chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         return _addOrModifyIntercept(sender.tab, message as ChiragMessageAddOrModifyIntercept, sendResponse);
+    });
+
+    // Enable/disable intercept
+    chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
+        return _enableOrDisableIntercept(sender.tab, message as ChiragMessageEnableOrDisableIntercept, sendResponse);
     });
 
     // Remove intercept
@@ -43,6 +48,11 @@ export const removeMessageListeners = () => {
         return _addOrModifyIntercept(sender.tab, message as ChiragMessageAddOrModifyIntercept, sendResponse);
     });
 
+    // Enable/disable intercept
+    chrome.runtime.onMessage.removeListener(async (message, sender, sendResponse) => {
+        return _enableOrDisableIntercept(sender.tab, message as ChiragMessageEnableOrDisableIntercept, sendResponse);
+    });
+
     // Remove intercept
     chrome.runtime.onMessage.removeListener(async (message, sender, sendResponse) => {
         return _removeIntercept(sender.tab, message as ChiragMessageRemoveIntercept, sendResponse);
@@ -68,6 +78,13 @@ const _switch = async (tab: chrome.runtime.MessageSender["tab"], message: Chirag
 const _addOrModifyIntercept = async (tab: chrome.runtime.MessageSender["tab"], message: ChiragMessageAddOrModifyIntercept, sendResponse: (response: any) => void) => {
     if (tab && await isTabActive(tab.id) && message?.type === Message.ADD_OR_MODIFY_INTERCEPT) {
         await addIntercept(message.payload.interceptUrl, message.payload.intercept);
+        sendResponse("DONE");
+    }
+}
+
+const _enableOrDisableIntercept = async (tab: chrome.runtime.MessageSender["tab"], message: ChiragMessageEnableOrDisableIntercept, sendResponse: (response: any) => void) => {
+    if (tab && await isTabActive(tab.id) && message?.type === Message.ENABLE_OR_DISABLE_INTERCEPT) {
+        await enableDisableIntercept(message.payload.interceptUrl);
         sendResponse("DONE");
     }
 }

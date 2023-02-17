@@ -5,6 +5,7 @@ export type ChiragStorage = {
     tabs: { [tabId: string | number]: boolean };
     intercepts: {
         [interceptUrl: string]: {
+            enabled: boolean;
             responseStatusCode: number;
             responseHeaders: { [responseHeaderName: string]: string };
             responseBody: string;
@@ -21,6 +22,13 @@ export type ChiragMessageAddOrModifyIntercept = {
     payload: {
         interceptUrl: string;
         intercept: ChiragStorage["intercepts"][""];
+    };
+}
+
+export type ChiragMessageEnableOrDisableIntercept = {
+    type: Message.ENABLE_OR_DISABLE_INTERCEPT;
+    payload: {
+        interceptUrl: string;
     };
 }
 

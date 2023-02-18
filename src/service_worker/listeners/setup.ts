@@ -2,9 +2,9 @@
  * Contains event handlers to set up extension
  */
 
-import { Status } from "../enums.js";
-import { resetStorage, setAllTabsToInactive, setTabToActive, setTabToInactive, switchExtension } from "../helpers/storage.js";
-import { getCurrentTab } from "../helpers/tabs.js";
+import { Status } from "../enums";
+import { resetStorage, setAllTabsToInactive, setTabToActive, setTabToInactive, switchExtension } from "../helpers/storage";
+import { getCurrentTab } from "../helpers/tabs";
 
 /**
  * @dev Sets up event handlers to setup Chirag

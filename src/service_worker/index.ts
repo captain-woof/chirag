@@ -1,6 +1,6 @@
-import { setupInterceptor } from "./listeners/interceptor.js";
-import { setupMessageListeners } from "./listeners/message.js";
-import { setupChirag } from "./listeners/setup.js";
+import { setupInterceptor } from "./listeners/interceptor";
+import { setupMessageListeners } from "./listeners/message";
+import { setupChirag } from "./listeners/setup";
 
 setupChirag();
 setupInterceptor();

@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import "./styles/reset.css";
 </script>
 
 <template>
-    <h1>CHIRAG</h1>
+    <v-app>
+        <v-main>
+            <h1 class="text-h1 text-primary">VUETIFY</h1>
+        </v-main>
+    </v-app>
 </template>
 
-<styles lang="scss">
-    h1 {
-        color: blue;
-    }
-</styles>
+<styles lang="scss"></styles>

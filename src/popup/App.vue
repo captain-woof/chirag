@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import StatusBar from './components/misc/StatusBar.vue';
+</script>
+
 <template>
-    <router-view></router-view>
+    <v-layout>
+        <StatusBar />
+        <router-view></router-view>
+    </v-layout>
 </template>

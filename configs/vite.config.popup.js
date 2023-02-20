@@ -32,7 +32,11 @@ export default defineConfig(({
                     transformAssetUrls
                 }
             }),
-            vuetify()
+            vuetify({
+                styles: {
+                    configFile: "styles/vuetify_settings.scss"
+                }
+            })
         ]
     }
 });

@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
-import Home from "../components/home/index.vue";
-import About from "../components/about/index.vue";
-import Editor from "../components/editor/index.vue";
+import Home from "../components/pages/home/index.vue";
+import About from "../components/pages/about/index.vue";
+import Editor from "../components/pages/editor/index.vue";
 
 export const routes: Array<RouteRecordRaw> = [
     {

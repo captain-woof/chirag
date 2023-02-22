@@ -16,7 +16,7 @@ export const routes: Array<RouteRecordRaw> = [
     },
     {
         name: "editor",
-        path: "/editor",
+        path: "/editor/:interceptUrl*",
         component: Editor
     }
 ]

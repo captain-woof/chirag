@@ -1,12 +1,9 @@
 <script setup lang="ts">
+import Intercepts from './intercepts.vue';
 </script>
 
 <template>
-    <!-- Header -->
-
-    
+    <Intercepts />
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

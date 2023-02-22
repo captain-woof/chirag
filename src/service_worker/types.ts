@@ -6,6 +6,7 @@ export type ChiragStorage = {
     intercepts: {
         [interceptUrl: string]: {
             enabled: boolean;
+            nickname: string;
             responseStatusCode: number;
             responseHeaders: { [responseHeaderName: string]: string };
             responseBody: string;

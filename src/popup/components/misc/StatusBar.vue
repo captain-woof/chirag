@@ -11,7 +11,7 @@
         </div>
 
         <!-- On/off button -->
-        <v-switch color="purple-lighten-1" hide-details density="compact" flat class="switch"></v-switch>
+        <v-switch color="primary" hide-details density="compact" flat class="switch"></v-switch>
     </v-system-bar>
 </template>
 

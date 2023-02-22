@@ -3,7 +3,7 @@ import StatusBar from './components/misc/StatusBar.vue';
 </script>
 
 <template>
-    <v-layout>
+    <v-layout class="d-flex flex-column">
         <StatusBar />
         <router-view></router-view>
     </v-layout>

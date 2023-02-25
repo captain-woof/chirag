@@ -17,24 +17,31 @@ const router = useRouter();
 const toast = useToast();
 
 // Getters
-const interceptUrl = computed(() => (route.params.interceptUrl as string));
+const interceptUrlInitial = computed(() => (route.params.interceptUrl as string));
 
 const heading = computed(() => (
-    store.intercepts[interceptUrl.value]
+    store.intercepts[interceptUrlInitial.value]
         ? "Edit intercept"
         : "Add intercept"
 ));
 
 // States
 const interceptForEditing = ref(getInterceptForEditing({
-    interceptUrl: interceptUrl.value,
-    ...store.intercepts[interceptUrl.value]
+    interceptUrl: interceptUrlInitial.value,
+    ...store.intercepts[interceptUrlInitial.value]
 }));
 
 // Methods
 const handleSaveIntercept = async () => {
     try {
         const { interceptUrl, ...intercept } = getInterceptForSaving(interceptForEditing.value);
+
+        // If intercept URL changed, delete previous one
+        if (interceptUrlInitial.value !== interceptUrl) {
+            await store.removeIntercept(interceptUrlInitial.value);
+        }
+
+        // Add new/updated intercept
         await store.addOrUpdateIntercept(interceptUrl, intercept);
         router.back();
     } catch {

@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import Intercept from './intercept.vue';
 import { useChiragStore } from '../../../store';
+import AddNewIntercept from './addNewIntercept.vue';
 
 // States
 const store = useChiragStore();
@@ -16,9 +17,18 @@ const interceptsArr = computed(() => (Object.entries(store.intercepts).map(([int
 </script>
 
 <template>
-    <v-list class="intercepts">
-        <Intercept v-for="intercept in interceptsArr" :key="intercept.interceptUrl" :intercept="intercept" />
-    </v-list>
+    <div class="bg-grey-darken-4">
+
+        <!-- List of intercepts -->
+        <v-list class="intercepts">
+            <Intercept v-for="intercept in interceptsArr" :key="intercept.interceptUrl" :intercept="intercept" />
+        </v-list>
+
+        <footer class="py-5">
+            <!-- Add new intercept button -->
+            <AddNewIntercept />
+        </footer>
+    </div>
 </template>
 
 <style scoped lang="scss">

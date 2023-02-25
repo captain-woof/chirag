@@ -1,9 +1,20 @@
 <script lang="ts" setup>
 import { Status } from "../../../../service_worker/enums";
 import { useChiragStore } from '../../../store';
+import { useToast } from "../../../plugins/toast";
 
 // States
 const store = useChiragStore();
+const toast = useToast();
+
+// Methods
+const handleSwitch = async () => {
+    try {
+        await store.switchChirag();
+    } catch {
+        toast.show(`Could not switch ${store.status === Status.OFF ? 'on' : 'off'} Chirag`, "error");
+    }
+}
 
 </script>
 
@@ -16,8 +27,8 @@ const store = useChiragStore();
         </div>
 
         <!-- On/off button -->
-        <v-switch color="primary" hide-details density="compact" flat class="switch" :model-value="Status.OFF"
-            @update:model-value="store.switchChirag" :true-value="Status.ON" :false-value="Status.OFF"></v-switch>
+        <v-switch color="primary" hide-details density="compact" flat class="switch" :model-value="store.status"
+            @update:model-value="handleSwitch" :true-value="Status.ON" :false-value="Status.OFF"></v-switch>
     </v-system-bar>
 </template>
 

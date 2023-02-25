@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import StatusBar from './components/misc/StatusBar.vue';
+import { onBeforeMount } from "vue";
+import { syncChiragStore } from './store';
+
+// Initialise store
+onBeforeMount(syncChiragStore);
 </script>
 
 <template>
-    <v-layout class="d-flex flex-column">
-        <StatusBar />
+    <v-layout>
         <router-view></router-view>
     </v-layout>
 </template>

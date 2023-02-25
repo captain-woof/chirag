@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { defineProps, computed, defineEmits, ref } from "vue";
+import { defineProps, ref } from "vue";
 import { useRouter } from "vue-router";
 import { ChiragStorage } from "../../../../service_worker/types";
+import { useChiragStore } from "../../../store";
 
 // Props
 const { intercept } = defineProps<{
@@ -9,8 +10,8 @@ const { intercept } = defineProps<{
 }>();
 
 // States
-const enabled = ref(intercept.enabled);
 const router = useRouter();
+const store = useChiragStore();
 
 // Methods
 const handleInterceptClick = () => {
@@ -19,18 +20,25 @@ const handleInterceptClick = () => {
 </script>
 
 <template>
-    <v-list-item :title="intercept.nickname" append-icon="mdi-chevron-right" @click="handleInterceptClick" class="intercept"
-        :class="{ 'intercept--disabled': !enabled }" v-ripple>
+    <v-list-item append-icon="mdi-chevron-right" @click="handleInterceptClick" class="intercept"
+        :class="{ 'intercept--disabled': !intercept.enabled }" v-ripple>
         <!-- Checkbox - enable/disable -->
         <template #prepend>
-            <v-checkbox color="primary" v-model="enabled"></v-checkbox>
+            <v-checkbox color="primary" :model-value="intercept.enabled" @click.stop="store.enableDisableIntercept(intercept.interceptUrl)"></v-checkbox>
+        </template>
+
+        <!-- Title -->
+        <template #title>
+            <h1 class="text-body-1">
+                {{ intercept.nickname }}
+            </h1>
         </template>
 
         <!-- Subtitle -->
         <template #subtitle>
             <v-tooltip :text="intercept.interceptUrl" location="top">
                 <template #activator="{ props }">
-                    <h2 class="text-caption" v-bind="props">
+                    <h2 class="text-body-2" v-bind="props">
                         {{ intercept.interceptUrl }}
                     </h2>
                 </template>

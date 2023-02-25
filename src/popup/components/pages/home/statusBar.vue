@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+import { Status } from "../../../../service_worker/enums";
+import { useChiragStore } from '../../../store';
+
+// States
+const store = useChiragStore();
 
 </script>
 
@@ -11,7 +16,8 @@
         </div>
 
         <!-- On/off button -->
-        <v-switch color="primary" hide-details density="compact" flat class="switch"></v-switch>
+        <v-switch color="primary" hide-details density="compact" flat class="switch" :model-value="Status.OFF"
+            @update:model-value="store.switchChirag" :true-value="Status.ON" :false-value="Status.OFF"></v-switch>
     </v-system-bar>
 </template>
 

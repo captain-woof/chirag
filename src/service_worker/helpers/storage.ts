@@ -2,6 +2,14 @@ import { Status } from "../enums";
 import { ChiragStorage } from "../types";
 
 /**
+ * @dev Gets the entire storage
+ * @returns Entire Chirag storage, all objects in a map
+ */
+export const getStorage = () => {
+    return (chrome.storage.local.get(null)) as unknown as Promise<ChiragStorage>;
+}
+
+/**
  * @dev Resets storage
  */
 export const resetStorage = async () => {

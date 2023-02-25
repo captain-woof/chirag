@@ -4,6 +4,7 @@ import { pinia } from "./plugins/pinia";
 import { toast } from "./plugins/toast";
 import { router } from "./router";
 import App from "./App.vue";
+import "./styles/globals.scss";
 
 const app = createApp(App)
     .use(vuetify)

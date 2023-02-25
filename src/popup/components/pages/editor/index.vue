@@ -43,6 +43,7 @@ const handleSaveIntercept = async () => {
 
         // Add new/updated intercept
         await store.addOrUpdateIntercept(interceptUrl, intercept);
+        toast.show("Successfully saved", "success");
         router.back();
     } catch {
         toast.show("Failed to save intercept", "error");

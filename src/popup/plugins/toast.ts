@@ -37,6 +37,15 @@ export const useToast = () => {
  */
 export const toast: Plugin = {
     install(app, options) {
-        app.config.globalProperties.$toast = useToast();
+        const toast = useToast();
+
+        // Set global property $toast
+        app.config.globalProperties.$toast = toast;
+
+        // Handle global Vue error
+        app.config.errorHandler = (err, instance, info) => {
+            toast.show("Unexpected error", "error");
+            console.error("ERROR", err, info);
+        }
     },
 }

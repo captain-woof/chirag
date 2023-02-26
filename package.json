@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "build": "vite build -d -c configs/vite.config.service_worker.js && vite build -d -c configs/vite.config.popup.js",
+    "build": "rm - r ./dist; vite build -d -c configs/vite.config.service_worker.js && vite build -d -c configs/vite.config.popup.js && cp -r src/icons/ dist/ && cp -r src/manifest.json dist/",
     "dev": "concurrently -k \"vite -d -c configs/vite.config.service_worker.js/\" \"vite -d -c configs/vite.config.popup.js/\""
   },
   "author": "captainwoof.official@gmail.com",

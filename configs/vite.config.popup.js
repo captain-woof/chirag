@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import path from "path";
 
 export default defineConfig(({
     command, mode
@@ -9,11 +10,19 @@ export default defineConfig(({
 
     return {
         root: "src/popup",
+        resolve: {
+            alias: {
+                "@": path.resolve(__dirname, "../", 'src', "popup"),
+            }
+        },
         build: {
             rollupOptions: {
-                input: "src/popup/index.html"
+                input: "src/popup/index.html",
+                output: {
+                    format: "es"
+                }
             },
-            outDir: "../../dist/popup",
+            outDir: "../../dist",
             assetsDir: "",
             target: "es2015",
             sourcemap: isDev ? "inline" : false,

@@ -11,7 +11,9 @@ export default defineConfig(({ command, mode }) => {
                 output: {
                     entryFileNames: 'service_worker.js',
                     manualChunks: false,
-                    inlineDynamicImports: true,
+                    inlineDynamicImports: false,
+                    format: "iife"
+                    
                 }
             },
             target: "es2015",

@@ -23,7 +23,9 @@
             "96": "icons/96.png",
             "144": "icons/144.png",
             "192": "icons/192.png"
-        }
+        },
+        "default_popup": "index.html",
+        "default_title": "Chirag - Mock API Responses in Browser"
     },
     "permissions": [
         "storage",

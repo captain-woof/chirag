@@ -26,7 +26,8 @@ export const setupChirag = () => {
         const currentTab = await getCurrentTab();
         const debugee = { tabId: currentTab.id }
 
-        switch (storage.status.newValue as Status) {
+        if (!storage?.status || typeof storage.status !== "number") return;
+        switch ((storage.status as any).newValue as Status) {
             case Status.OFF:
                 await chrome.debugger.sendCommand(debugee, "Fetch.disable");
                 await chrome.debugger.detach(debugee);
@@ -42,7 +43,8 @@ export const setupChirag = () => {
 
     // On switching, change status indicators
     chrome.storage.local.onChanged.addListener(async (storage) => {
-        switch (storage.status.newValue as Status) {
+        if (!storage?.status || typeof storage.status !== "number") return;
+        switch ((storage.status as any).newValue as Status) {
             case Status.OFF:
                 await chrome.action.setBadgeText({ text: "OFF" });
                 await chrome.action.setBadgeBackgroundColor({ color: "#ff0000" });

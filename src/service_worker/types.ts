@@ -8,7 +8,7 @@ export type ChiragStorage = {
             enabled: boolean;
             nickname: string;
             responseStatusCode: number;
-            responseHeaders: { [responseHeaderName: string]: string };
+            responseHeaders: Array<{name: string, value: string}>;
             responseBody: string;
         }
     };

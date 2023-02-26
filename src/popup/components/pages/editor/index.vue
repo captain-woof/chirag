@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useChiragStore } from "../../../store";
-import { getInterceptForEditing, getInterceptForSaving } from "./utils";
+import { getInterceptForEditing } from "./utils";
 import { useToast } from "../../../plugins/toast";
 import InterceptUrl from "./interceptUrl.vue";
 import SaveAndCancel from "./saveAndCancel.vue";
@@ -26,7 +26,7 @@ const heading = computed(() => (
 ));
 
 // States
-const interceptForEditing = ref(getInterceptForEditing({
+const interceptForEditing = reactive(getInterceptForEditing({
     interceptUrl: interceptUrlInitial.value,
     ...store.intercepts[interceptUrlInitial.value]
 }));
@@ -34,7 +34,7 @@ const interceptForEditing = ref(getInterceptForEditing({
 // Methods
 const handleSaveIntercept = async () => {
     try {
-        const { interceptUrl, ...intercept } = getInterceptForSaving(interceptForEditing.value);
+        const { interceptUrl, ...intercept } = interceptForEditing;
 
         // If intercept URL changed, delete previous one
         if (interceptUrlInitial.value !== interceptUrl) {
@@ -65,13 +65,13 @@ const handleSaveIntercept = async () => {
             <InterceptUrl v-model="interceptForEditing.interceptUrl" />
 
             <!-- Status code -->
-            <StatusCode v-model="interceptForEditing.statusCode" />
+            <StatusCode v-model="interceptForEditing.responseStatusCode" />
 
             <!-- Headers -->
-            <Headers v-model="interceptForEditing.headers" />
+            <Headers v-model="interceptForEditing.responseHeaders" />
 
-            <!-- Content -->
-            <Content v-model="interceptForEditing.content" />
+            <!-- Response body -->
+            <Content v-model="interceptForEditing.responseBody" />
         </div>
 
         <!-- Save and Cancel -->

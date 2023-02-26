@@ -2,14 +2,13 @@ import { defineStore } from "pinia";
 import { Status } from "../../service_worker/enums";
 import { ChiragStorage } from "../../service_worker/types";
 import { getStorage, switchExtension, addIntercept, enableDisableIntercept, removeIntercept, removeAllIntercepts } from "../../service_worker/helpers/storage";
-import { dummyIntercepts } from "./dummy-data";
 
 // Create store
 export const useChiragStore = defineStore("chirag", {
     state: (): ChiragStorage => ({
         status: Status.OFF,
         tabs: {},
-        intercepts: dummyIntercepts // TODO: REMOVE THIS
+        intercepts: {}
     }),
     actions: {
         async switchChirag() {
@@ -45,5 +44,5 @@ export const useChiragStore = defineStore("chirag", {
 export const syncChiragStore = async () => {
     const chiragStorage = await getStorage();
     const store = useChiragStore();
-    //store.$patch(chiragStorage); // TODO: UNCOMMENT THIS LINE
+    store.$patch(chiragStorage);
 }

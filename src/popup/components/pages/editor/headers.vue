@@ -3,15 +3,15 @@ import { InterceptForEditing } from "./utils";
 import { cloneDeep } from "lodash-es";
 
 const props = defineProps<{
-    modelValue: InterceptForEditing["headers"]
+    modelValue: InterceptForEditing["responseHeaders"]
 }>();
 
 const emit = defineEmits<{
-    (event: "update:modelValue", value: InterceptForEditing["headers"]): void
+    (event: "update:modelValue", value: InterceptForEditing["responseHeaders"]): void
 }>();
 
 // Methods
-const getHeaderHint = (header: InterceptForEditing["headers"][0]) => (
+const getHeaderHint = (header: InterceptForEditing["responseHeaders"][0]) => (
     (header?.name && header?.name !== "") ? `Value of "${header.name}"` : "Value of the header"
 );
 

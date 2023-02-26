@@ -5,8 +5,24 @@ import { ChiragStorage } from "../types";
  * @dev Gets the entire storage
  * @returns Entire Chirag storage, all objects in a map
  */
-export const getStorage = () => {
-    return (chrome.storage.local.get(null)) as unknown as Promise<ChiragStorage>;
+export const getStorage = async () => {
+    const storage = await (chrome.storage.local.get(null) as unknown as Promise<ChiragStorage>);
+
+    // Convert headers from map to array
+    for (let [interceptUrl, intercept] of Object.entries(storage.intercepts)) {
+        const headersMap = intercept.responseHeaders as unknown as { [index: string | number]: { name: string; value: string } };
+        
+        const headersArr: Array<{ name: string; value: string }> = [];
+        for (let i = 0; ; i++) {
+            const header = headersMap[i];
+            if (!header) break;
+            headersArr.push(header);
+        }
+
+        storage.intercepts[interceptUrl].responseHeaders = headersArr;
+    }
+
+    return storage;
 }
 
 /**

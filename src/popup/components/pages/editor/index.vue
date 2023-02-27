@@ -42,7 +42,10 @@ const handleSaveIntercept = async () => {
         }
 
         // Add new/updated intercept
-        await store.addOrUpdateIntercept(interceptUrl, intercept);
+        const urlPattern = new URLPattern(interceptUrl);
+        const interceptUrlProcessed = urlPattern.pathname !== "/" ? interceptUrl : (interceptUrl.endsWith("/") ? interceptUrl : `${interceptUrl}/`);
+
+        await store.addOrUpdateIntercept(interceptUrlProcessed, intercept);
         toast.show("Successfully saved", "success");
         router.back();
     } catch {

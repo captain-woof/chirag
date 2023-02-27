@@ -34,7 +34,7 @@ export const setupChirag = () => {
                 await setTabToInactive(currentTab.id);
                 break;
             case Status.ON:
-                await chrome.debugger.attach(debugee, "1.0");
+                await chrome.debugger.attach(debugee, "1.3");
                 await chrome.debugger.sendCommand(debugee, "Fetch.enable", { urlPattern: "*" });
                 await setTabToActive(currentTab.id);
                 break;

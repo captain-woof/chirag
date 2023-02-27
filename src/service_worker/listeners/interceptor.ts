@@ -16,13 +16,14 @@ export const setupInterceptor = () => {
                 await chrome.debugger.sendCommand(debugee, 'Fetch.fulfillRequest', {
                     requestId: (params as any).requestId,
                     responseCode: intercept.responseStatusCode,
-                    responseHeaders: intercept.responseHeaders,
-                    body: intercept.responseBody
+                    responseHeaders: Object.entries(intercept.responseHeaders).map(([index, { name, value }]) => ({ name, value })),
+                    body: btoa(intercept.responseBody)
                 });
             } else { // If intercept does not exist, forward request as originally intended
                 await chrome.debugger.sendCommand(debugee, "Fetch.continueRequest", {
                     requestId: (params as any).requestId,
-                    ...(params as any).request
+                    ...(params as any).request,
+                    headers: Object.entries((params as any).request.headers).map(([name, value]) => ({ name, value }))
                 });
             }
         }

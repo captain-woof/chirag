@@ -37,7 +37,7 @@ const handleSaveIntercept = async () => {
         const { interceptUrl, ...intercept } = interceptForEditing;
 
         // If intercept URL changed, delete previous one
-        if (interceptUrlInitial.value !== interceptUrl) {
+        if (typeof interceptUrlInitial.value === 'string' && interceptUrlInitial.value !== "" && interceptUrlInitial.value !== interceptUrl) {
             await store.removeIntercept(interceptUrlInitial.value);
         }
 

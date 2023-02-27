@@ -10,15 +10,10 @@ export const getStorage = async () => {
 
     // Convert headers from map to array
     for (let [interceptUrl, intercept] of Object.entries(storage.intercepts)) {
-        const headersMap = intercept.responseHeaders as unknown as { [index: string | number]: { name: string; value: string } };
-        
         const headersArr: Array<{ name: string; value: string }> = [];
-        for (let i = 0; ; i++) {
-            const header = headersMap[i];
-            if (!header) break;
-            headersArr.push(header);
+        for (let [index, value] of Object.entries(intercept.responseHeaders)) {
+            headersArr[index] = value;
         }
-
         storage.intercepts[interceptUrl].responseHeaders = headersArr;
     }
 
@@ -128,7 +123,7 @@ export const isInterceptPresent = async (interceptUrl: string) => {
  * @returns Intercept
  */
 export const getIntercept = async (interceptUrl: string) => {
-    const intercepts: ChiragStorage["intercepts"] = (await chrome.storage.local.get("intercepts")).intercepts;
+    const intercepts = (await getStorage()).intercepts;
     return intercepts[interceptUrl];
 }
 

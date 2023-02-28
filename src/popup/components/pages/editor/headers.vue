@@ -53,7 +53,7 @@ const handleHeaderAdd = () => {
                     @update:model-value="handleHeaderChange('name', i, $event)"></v-text-field>
 
                 <!-- Header value -->
-                <v-text-field clearable label="Value" placeholder="200" :hint="getHeaderHint(header)" color="primary"
+                <v-text-field clearable label="Value" placeholder="Header value" :hint="getHeaderHint(header)" color="primary"
                     variant="filled" :model-value="props.modelValue[i].value"
                     @update:model-value="handleHeaderChange('value', i, $event)" class="mt-2"></v-text-field>
 

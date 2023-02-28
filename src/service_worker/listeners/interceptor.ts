@@ -19,6 +19,12 @@ export const setupInterceptor = () => {
                     responseHeaders: Object.entries(intercept.responseHeaders).map(([index, { name, value }]) => ({ name, value })),
                     body: btoa(intercept.responseBody)
                 });
+
+                // Increase intercepted requests number by 1
+                const badgeTextCurrent = await chrome.action.getBadgeText({ tabId: debugee.tabId });
+                let interceptedRequestsNumPrev = parseInt(badgeTextCurrent);
+                await chrome.action.setBadgeText({ tabId: debugee.tabId, text: (isNaN(interceptedRequestsNumPrev)) ? "1" : (++interceptedRequestsNumPrev).toString() });
+                await chrome.action.setBadgeBackgroundColor({ tabId: debugee.tabId, color: "#AB47BC" });
             } else { // If intercept does not exist, forward request as originally intended
                 await chrome.debugger.sendCommand(debugee, "Fetch.continueRequest", {
                     requestId: (params as any).requestId,

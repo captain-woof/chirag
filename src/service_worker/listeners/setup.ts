@@ -47,11 +47,11 @@ export const setupChirag = () => {
         switch ((storage.status as any).newValue as Status) {
             case Status.OFF:
                 await chrome.action.setBadgeText({ text: "OFF" });
-                await chrome.action.setBadgeBackgroundColor({ color: "#ff0000" });
+                await chrome.action.setBadgeBackgroundColor({ color: "#F44336" });
                 break;
             case Status.ON:
                 await chrome.action.setBadgeText({ text: "ON" });
-                await chrome.action.setBadgeBackgroundColor({ color: "#0000ff" });
+                await chrome.action.setBadgeBackgroundColor({ color: "#4CAF50" });
                 break;
         }
     });

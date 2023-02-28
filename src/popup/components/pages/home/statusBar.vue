@@ -19,15 +19,12 @@ const handleSwitch = async () => {
 </script>
 
 <template>
-    <v-system-bar class="status-bar d-flex-row justify-end align-center ">
-        <!-- Requests intercepted num -->
-        <div class="text-body-2 d-flex-row align-center">
-            <span>Requests intercepted:</span>
-            <span class="ml-1">3</span>
-        </div>
+    <v-system-bar class="status-bar bg-primary">
+        <!-- Title -->
+        <h1 class="title text-body-2">Chirag</h1>
 
         <!-- On/off button -->
-        <v-switch color="primary" hide-details density="compact" flat class="switch" :model-value="store.status"
+        <v-switch color="white" hide-details density="compact" flat class="switch" :model-value="store.status"
             @update:model-value="handleSwitch" :true-value="Status.ON" :false-value="Status.OFF"></v-switch>
     </v-system-bar>
 </template>
@@ -35,10 +32,23 @@ const handleSwitch = async () => {
 <style scoped lang="scss">
 .status-bar {
     position: relative !important;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .title {
+        grid-column: 2/3;
+        justify-self: center;
+    }
 
     .switch {
-        flex: unset;
+        grid-column: 3/4;
+        justify-self: end;
+
+        & ::v-deep .v-selection-control {
+            height: 24px;
+        }
     }
+
+
 }
 </style>

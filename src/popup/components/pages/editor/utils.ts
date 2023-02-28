@@ -11,6 +11,10 @@ export const starterIntercept: InterceptForEditing = {
         {
             name: "content-type",
             value: ""
+        },
+        {
+            name: "Access-Control-Allow-Origin",
+            value: "*"
         }
     ],
     responseStatusCode: 200,

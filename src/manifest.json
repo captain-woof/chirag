@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Chirag",
+    "name": "Chirag - Mock API Responses in Browser",
     "version": "1.0.0",
     "description": "Mock API responses by having your requests intercepted and responded with your chosen response.",
     "icons": {

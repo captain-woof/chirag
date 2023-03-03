@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chirag Demo</title>
+</head>
+
+<body>
+    <h1>Chirag Demo</h1>
+
+    <p>Choose a non-existent URL, make a call, and see the response. Then use Chirag and do the same.</p>
+
+    <form id="url-form" style="display: flex;flex-direction: column;">
+        <label style="width: max-content;" for="url">Make a GET request to:</label>
+        <input style="width: 300px;" name="url" type="url" id="url" placeholder="https://something-that-does-not-work.com/api/" />
+        <button style="width: max-content; display: block; margin-top: 14px;" type="submit">Submit</button>
+    </form>
+
+    <code id="call-result" style="display: block;margin-top: 24px;background-color: #f1f1f1;"></code>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

@@ -8,7 +8,11 @@ Chirag is a Chrome extension to mock API responses, by having your requests inte
 
 # Install
 
-There are two ways to get Chirag running in your browser.
+There are three ways to get Chirag running in your browser.
+
+## From Chrome Web Store
+
+In progress.
 
 ## Building from source
 

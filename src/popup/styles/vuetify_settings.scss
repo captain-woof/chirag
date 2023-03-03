@@ -1,6 +1,0 @@
-@use "./fonts";
-
-@use "vuetify/settings" with (
-    $body-font-family: fonts.$font-family
-);
-

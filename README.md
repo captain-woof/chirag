@@ -29,3 +29,7 @@ Download the `chirag.zip` from [releases](https://github.com/captain-woof/chirag
 1. Just add a URL you wanna mock a response for, add the corresponding response body, headers, etc.
 2. Turn on the extension, and enable the added intercept.
 3. Then have your current webpage make a request to the URL you just added.
+
+# Demo
+
+[Try it out here](https://captain-woof.github.io/chirag/demo/)

@@ -32,4 +32,7 @@ Download the `chirag.zip` from [releases](https://github.com/captain-woof/chirag
 
 # Demo
 
+https://user-images.githubusercontent.com/72122026/222662159-b219c5eb-f0ea-4b2e-8c85-4f9fc7136f8d.mp4
+
+
 [Try it out here](https://captain-woof.github.io/chirag/demo/)

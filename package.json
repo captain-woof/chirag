@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "build": "rm - r ./dist; vite build -d -c configs/vite.config.service_worker.js && vite build -d -c configs/vite.config.popup.js && cp -r src/icons/ dist/ && cp -r src/manifest.json dist/",
+    "build": "rm -r ./dist; vite build -d -c configs/vite.config.service_worker.js && vite build -d -c configs/vite.config.popup.js && cp -r src/icons/ dist/ && cp -r src/manifest.json dist/",
     "build:watch": "rm -r ./dist; mkdir dist/ && cp -r src/icons/ dist/ && cp -r src/manifest.json dist/ && concurrently -k \"vite build --mode development -w -d -c configs/vite.config.service_worker.js\" \"vite build --mode development -w -d -c configs/vite.config.popup.js\"",
     "dev": "concurrently -k \"vite -d -c configs/vite.config.service_worker.js/\" \"vite -d -c configs/vite.config.popup.js/\""
   },

@@ -99,6 +99,16 @@ export const isInterceptPresent = async (interceptUrl: string) => {
 }
 
 /**
+ * @dev Checks if an intercept is enabled
+ * @param interceptUrl Intercept url
+ * @returns True, if it is enabled
+ */
+export const isInterceptEnabled = async (interceptUrl: string) => {
+    const intercepts: ChiragStorage["intercepts"] = (await chrome.storage.local.get("intercepts")).intercepts;
+    return intercepts[interceptUrl]?.enabled;
+}
+
+/**
  * @dev Gets intercept corresponding to a url
  * @param interceptUrl Intercepting url
  * @returns Intercept
